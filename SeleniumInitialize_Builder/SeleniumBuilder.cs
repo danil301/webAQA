@@ -18,7 +18,7 @@ namespace SeleniumInitialize_Builder
 
         public bool IsDisposed { get; private set; }
 
-        public List<string> ChangedArguments { get; private set; }       
+        public List<string> ChangedArguments { get; private set; }
 
         public Dictionary<string, object> ChangedUserOptions { get; private set; }
 
@@ -38,11 +38,10 @@ namespace SeleniumInitialize_Builder
         {
             //Создать экземпляр драйвера, присвоить получившийся результат переменной WebDriver, вернуть в качестве результата данного метода.
             if (ChangedUserOptions.Count != 0 && ChangedArguments.Count != 0) _webDriver = new ChromeDriver(_driverService, _chromeOptions);
-            else if (ChangedUserOptions.Count != 0) _webDriver = new ChromeDriver(_chromeOptions);
-            else if (ChangedArguments.Count != 0) _webDriver = new ChromeDriver(_driverService);
+            else if (ChangedUserOptions.Count != 0 || ChangedArguments.Count != 0) _webDriver = new ChromeDriver(_chromeOptions);
             else _webDriver = new ChromeDriver();
 
-            if (Timeout != null) _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(Timeout.Seconds);
+            if (Timeout != TimeSpan.Zero) _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(Timeout.Seconds);
             if (StartingURL != null) _webDriver.Navigate().GoToUrl(StartingURL);
 
 
@@ -75,13 +74,12 @@ namespace SeleniumInitialize_Builder
             //Реализовать добавление аргумента. При решении данной задаче ознакомитесь с классом Options соответствующего драйвера (ChromeOptions для браузера Chrome)
             //Все изменённые/добавленные аргументы необходимо отразить в свойстве СhangedArguments, которое перед этим нужно где-то будет проинициализировать.
             //Builder в данном методе должен возвращать сам себя
-            if (ChangedArguments.Contains(argument)) return this;
-            else
-            {
-                _chromeOptions.AddArgument(argument);
-                ChangedArguments.Add(argument);
-            }
-            
+        
+            //todo
+            ChangedArguments = new List<string>();
+             _chromeOptions.AddArgument(argument);
+             ChangedArguments.Add(argument);
+                       
             return this;
         }
 
@@ -91,8 +89,6 @@ namespace SeleniumInitialize_Builder
             //Все изменения сохранить в свойстве ChangedUserOptions
             //Builder в данном методе должен возвращать сам себя
 
-
-            // Включаем безопасный просмотр
 
 
             if (ChangedUserOptions.ContainsKey(option))

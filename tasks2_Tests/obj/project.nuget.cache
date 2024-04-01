@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lsG01q8tbO4IDNks8DdrhPWwdvTRHkRwBfKwjpt1PVNE0Bg5aZeokufq3IC2Hv/oQ/FGmFyHlMCIG04cnuEtUA==",
+  "dgSpecHash": "DlNnBfOZUeZhxD34K307WZfBLvKFW98BNleXN+RnwCW3LipzaVH6GW78JfS35IHpiXvwjh0F2CJyYldO7P1adg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dvory\\Desktop\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj",
+  "projectFilePath": "D:\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dvory\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
+    "C:\\Users\\dvory\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "C:\\Users\\dvory\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
     "C:\\Users\\dvory\\.nuget\\packages\\microsoft.net.test.sdk\\17.1.0\\microsoft.net.test.sdk.17.1.0.nupkg.sha512",
     "C:\\Users\\dvory\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

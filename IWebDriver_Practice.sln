@@ -14,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks2", "Tasks2\Tasks2.csproj", "{466610C3-162B-4BEA-8598-9898F59337FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tasks2_Tests", "tasks2_Tests\tasks2_Tests.csproj", "{8A3BCF94-A3C4-4946-89F1-E8379AF48B41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tasks2_Tests", "tasks2_Tests\tasks2_Tests.csproj", "{8A3BCF94-A3C4-4946-89F1-E8379AF48B41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pages", "Pages\Pages.csproj", "{1EE10174-C7A7-41E6-AA91-9FD1E0EE13A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{8A3BCF94-A3C4-4946-89F1-E8379AF48B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A3BCF94-A3C4-4946-89F1-E8379AF48B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A3BCF94-A3C4-4946-89F1-E8379AF48B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE10174-C7A7-41E6-AA91-9FD1E0EE13A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE10174-C7A7-41E6-AA91-9FD1E0EE13A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE10174-C7A7-41E6-AA91-9FD1E0EE13A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE10174-C7A7-41E6-AA91-9FD1E0EE13A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

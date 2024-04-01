@@ -1,17 +1,85 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dvory\\Desktop\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj": {}
+    "D:\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dvory\\Desktop\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj": {
+    "D:\\webtasks\\Pages\\Pages.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dvory\\Desktop\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj",
-        "projectName": "SeleniumInitialize_Builder",
-        "projectPath": "C:\\Users\\dvory\\Desktop\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj",
+        "projectUniqueName": "D:\\webtasks\\Pages\\Pages.csproj",
+        "projectName": "Pages",
+        "projectPath": "D:\\webtasks\\Pages\\Pages.csproj",
         "packagesPath": "C:\\Users\\dvory\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dvory\\Desktop\\webtasks\\SeleniumInitialize_Builder\\obj\\",
+        "outputPath": "D:\\webtasks\\Pages\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\dvory\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj": {
+                "projectPath": "D:\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "DotNetSeleniumExtras.WaitHelpers": {
+              "target": "Package",
+              "version": "[3.11.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj",
+        "projectName": "SeleniumInitialize_Builder",
+        "projectPath": "D:\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj",
+        "packagesPath": "C:\\Users\\dvory\\.nuget\\packages\\",
+        "outputPath": "D:\\webtasks\\SeleniumInitialize_Builder\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -72,14 +140,14 @@
         }
       }
     },
-    "C:\\Users\\dvory\\Desktop\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj": {
+    "D:\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dvory\\Desktop\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj",
+        "projectUniqueName": "D:\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj",
         "projectName": "tasks2_Tests",
-        "projectPath": "C:\\Users\\dvory\\Desktop\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj",
+        "projectPath": "D:\\webtasks\\tasks2_Tests\\tasks2_Tests.csproj",
         "packagesPath": "C:\\Users\\dvory\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dvory\\Desktop\\webtasks\\tasks2_Tests\\obj\\",
+        "outputPath": "D:\\webtasks\\tasks2_Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -100,8 +168,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\dvory\\Desktop\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj": {
-                "projectPath": "C:\\Users\\dvory\\Desktop\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj"
+              "D:\\webtasks\\Pages\\Pages.csproj": {
+                "projectPath": "D:\\webtasks\\Pages\\Pages.csproj"
+              },
+              "D:\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj": {
+                "projectPath": "D:\\webtasks\\SeleniumInitialize_Builder\\SeleniumInitialize_Builder.csproj"
               }
             }
           }
@@ -116,6 +187,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "DotNetSeleniumExtras.WaitHelpers": {
+              "target": "Package",
+              "version": "[3.11.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.1.0, )"
@@ -133,6 +208,10 @@
               "version": "[4.2.1, )"
             },
             "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.18.1, )"
+            },
+            "Selenium.WebDriver": {
               "target": "Package",
               "version": "[4.18.1, )"
             },
