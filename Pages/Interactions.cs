@@ -35,25 +35,10 @@ namespace Pages
                 var cookieButton = _driver.FindElements(By.XPath("//button[@class='button']"))[1];
                 cookieButton.Click();
             }
-            catch (Exception)
-            {
+            catch (Exception) { }
 
-            }
             return this;
-        }
-
-        ///// <summary>
-        ///// Выбирает гражданство
-        ///// </summary>
-        ///// <param name="citizenship">string(РФ или Не РФ)</param>
-        ///// <returns>DebitCardYourCashBack</returns>
-        ///// <exception cref="Exception"></exception>
-        //public Interactions<T> FillCitizenShip(string citizenship)
-        //{
-        //    return FillListBox(_page._citizenShipInput.element, citizenship);
-        //}
-
-        
+        }      
 
         public Interactions FillCheckBox(bool check, IWebElement element, string xPath)
         {
@@ -98,7 +83,6 @@ namespace Pages
         public Interactions ClickElement(IWebElement element)
         {
             element.Click();
-
             return this;
         }
     }
