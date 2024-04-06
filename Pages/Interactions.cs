@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using Pages.Data;
 using Pages.Helpers;
 using SeleniumExtras.WaitHelpers;
 using System;
@@ -83,6 +82,23 @@ namespace Pages
         public Interactions ClickElement(IWebElement element)
         {
             element.Click();
+            return this;
+        }
+
+        
+
+
+        //list
+        public Interactions SetFieldByDropDownItems(IWebElement field, string input, string option)
+        {
+            field.SendKeys(input);
+
+            var opt = _driverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//div[contains(@text(), {option})]")));
+
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(opt).Click().Perform();
+            //opt.Click();
+
             return this;
         }
     }

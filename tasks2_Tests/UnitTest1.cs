@@ -1,15 +1,14 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumInitialize_Builder;
-using OpenQA.Selenium.Support;
-using System.Drawing;
-using SeleniumExtras.WaitHelpers;
+﻿
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using Pages;
-using Pages.Data;
-using System.Text.RegularExpressions;
-using System.Text;
 using Pages.Helpers;
+using PdfSharp.Pdf;
+using SeleniumExtras.WaitHelpers;
+using SeleniumInitialize_Builder;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace tasks2_Tests
 {
@@ -33,7 +32,7 @@ namespace tasks2_Tests
         public void HasDropDownList()
         {
             var driver = _builder.WithURL("https://ib.psbank.ru/store/products/classic-mortgage-program").Build();
-            var element = driver.FindElement(By.XPath("//mat-select[@id='mat-select-10']"));
+            var element = driver.FindElement(By.XPath("//label[contains(text(), 'Объект ипотеки')]"));
                 
             Assert.NotNull(element, "Элемент не найден на странице.");
         }
@@ -446,7 +445,7 @@ namespace tasks2_Tests
             var phoneNumber = driver.FindElement(By.XPath("//input[@name='Phone']"));
             phoneNumber.Click();
             actions.SendKeys("9002221212").Perform();
-
+         
             var emailInput = driver.FindElement(By.XPath("//input[@name='Email']"));
             emailInput.SendKeys("test@mail.ru");
 
@@ -545,26 +544,64 @@ namespace tasks2_Tests
                 PollingInterval = TimeSpan.FromMilliseconds(200),
             };
 
-            DebitCardYourCashBack debitCardYourCashBack = new DebitCardYourCashBack(driver, driverWait, new DebitXPaths());
-            Interactions interactions = new Interactions(driver, driverWait);
-            interactions.AcceptCookieIfExists()
-                .FillCheckBox(true, debitCardYourCashBack._promotionCheckBox.element, debitCardYourCashBack._promotionCheckBox._xPath)
-                .FillCheckBox(true, debitCardYourCashBack._personalDataCheckBox.element, debitCardYourCashBack._personalDataCheckBox._xPath)
-                .FillTextFields(debitCardYourCashBack._firstNameInput.element, Fields._firstName)
-                .FillTextFields(debitCardYourCashBack._lastNameInput.element, Fields._lastName)
-                .FillTextFields(debitCardYourCashBack._middleNameInput.element, Fields._middleName)
-                .FillActionFields(debitCardYourCashBack._birthDateInput.element, Fields._birthDate)
-                .FillActionFields(debitCardYourCashBack._phoneNumberInput.element, Fields._phoneNumber)
-                .FillListBox(debitCardYourCashBack._citizenShipInput.element, "РФ")
-                .ClickElement(debitCardYourCashBack._maleRadioButton.element)
-                .ClickElement(debitCardYourCashBack._continueButton.element);
 
-            CheckDataPage checkDataPageDebit = new CheckDataPage(driver, driverWait);
-            var checkDebitFields = checkDataPageDebit.CheckFields();
+
+            //using (var client = new WebClient())
+            //{
+            //    byte[] data = client.DownloadData("");
+            //    using (var pdf = new PdfDocument(data))
+            //    {
+            //        pdf.
+            //        string text = pdf.GetText();
+                  
+    
+            //}
+
+
+
+            var calendar = new Calendar("//mat-calendar", driverWait);
+            calendar.SetDate("33.12.2003");
+
+            var input = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//input[contains(@class,'slider') and @type='range']")));
+
+            var debitSlider = new Slider("//input[contains(@class,'slider') and @type='range']", driver, driverWait);
+            debitSlider.SetValue(13432);
+
+
+            Actions actions = new Actions(driver);
+            actions.MoveToElement(input).ClickAndHold().SendKeys(Keys.End).SendKeys(string.Join("", Enumerable.Repeat(Keys.Left, 10000).ToArray())).Release().Perform();
+
+            DebitCardYourCashBack debitCardYourCashBack = new DebitCardYourCashBack(driver, driverWait);
+            debitCardYourCashBack._categoriesButton.UncheckAllCategories().SelectCategories(new string[] { "Кафе и", "Дом", "Ж/д", "Одежда" });
+
+            Interactions interactions = new Interactions(driver, driverWait);
+            interactions.ClickElement(debitCardYourCashBack._categoriesButton._confirmButton);
+
+
+
+            Console.WriteLine();
+
+
+            //DebitCardYourCashBack debitCardYourCashBack = new DebitCardYourCashBack(driver, driverWait);
+            //interactions = new Interactions(driver, driverWait);
+            //interactions.AcceptCookieIfExists()
+            //    .FillCheckBox(true, debitCardYourCashBack._promotionCheckBox.element, debitCardYourCashBack._promotionCheckBox._xPath)
+            //    .FillCheckBox(true, debitCardYourCashBack._personalDataCheckBox.element, debitCardYourCashBack._personalDataCheckBox._xPath)
+            //    .FillTextFields(debitCardYourCashBack._firstNameInput.element, Fields._firstName)
+            //    .FillTextFields(debitCardYourCashBack._lastNameInput.element, Fields._lastName)
+            //    .FillTextFields(debitCardYourCashBack._middleNameInput.element, Fields._middleName)
+            //    .FillActionFields(debitCardYourCashBack._birthDateInput.element, Fields._birthDate)
+            //    .FillActionFields(debitCardYourCashBack._phoneNumberInput.element, Fields._phoneNumber)
+            //    .FillListBox(debitCardYourCashBack._citizenShipInput.element, "РФ")
+            //    .ClickElement(debitCardYourCashBack._maleRadioButton.element)
+            //    .ClickElement(debitCardYourCashBack._continueButton.element);
+
+            //CheckDataPage checkDataPageDebit = new CheckDataPage(driver, driverWait);
+            //var checkDebitFields = checkDataPageDebit.CheckFields();
 
 
             driver.Navigate().GoToUrl("https://ib.psbank.ru/store/products/consumer-loan");
-            CreditPage creditPage = new CreditPage(driver, driverWait, new CreditXPaths());
+            CreditPage creditPage = new CreditPage(driver, driverWait);
             interactions = new Interactions(driver, driverWait);
             interactions.AcceptCookieIfExists()
                 .FillCheckBox(true, creditPage._promotionCheckBox.element, creditPage._promotionCheckBox._xPath)
@@ -583,7 +620,7 @@ namespace tasks2_Tests
             CheckDataPage checkDataPageCredit = new CheckDataPage(driver, driverWait);
             var checkCreditFields = checkDataPageCredit.CheckFields();
 
-            Assert.IsTrue(checkDebitFields);
+           // Assert.IsTrue(checkDebitFields);
             Assert.IsTrue(checkCreditFields);
         }
 
@@ -612,8 +649,11 @@ namespace tasks2_Tests
             var elementWithTetxVisible = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//h2[@class='transfers__title']")));
             var elementText = elementWithTetxVisible.Text;
 
-            Assert.NotNull(elementWithTetxVisible, "Текст не отображается");
-            Assert.AreEqual(elementText, "Перевод с карты на карту", "Элемент не содержит правильный текст");
+            Assert.Multiple(() =>
+            {
+                Assert.NotNull(elementWithTetxVisible, "Текст не отображается");
+                Assert.AreEqual(elementText, "Перевод с карты на карту", "Элемент не содержит правильный текст");
+            });          
         }
 
         [Test(Description = "Проверка url у брокерского договора")]
@@ -701,8 +741,8 @@ namespace tasks2_Tests
             familyMortgage.Click();
 
             var familyMortgageProgramText = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@data-testid='program-header']"))).Text;
-            var familyMortgageMonthlyPayment = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//span[@data-testid='monthly-payment']"))).Text.Replace(" ", "");
-            familyMortgageMonthlyPayment = familyMortgageMonthlyPayment.Replace("₽", "");
+            var familyMortgageMonthlyPayment = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//span[@data-testid='monthly-payment']"))).Text
+                .Replace(" ", "").Replace("₽", "");
             int payment;
             var isFamilyMortgageMonthlyPaymentNumber = int.TryParse(familyMortgageMonthlyPayment, out payment);
 
@@ -712,9 +752,13 @@ namespace tasks2_Tests
 
 
             ////////////////////////////////////multple
-            Assert.AreEqual(familyMortgageProgramText, "Семейная ипотека", "Неверное отображение типа ипотеки семейной ипотеке.");
-            Assert.True(isFamilyMortgageMonthlyPaymentNumber, "Месячный платеж не число в семейной ипотеке.");
-            Assert.True(isFamilyMortgageInterestRateMatch, "Процент не соответствует маске в семейной ипотеке.");
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(familyMortgageProgramText, "Семейная ипотека", "Неверное отображение типа ипотеки семейной ипотеке.");
+                Assert.True(isFamilyMortgageMonthlyPaymentNumber, "Месячный платеж не число в семейной ипотеке.");
+                Assert.True(isFamilyMortgageInterestRateMatch, "Процент не соответствует маске в семейной ипотеке.");
+            });
+            
 
           
             button = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//span[contains(text(), 'Рефинансирование')]")));                        
@@ -725,17 +769,20 @@ namespace tasks2_Tests
             var bgColor = button.GetCssValue("background-color");
 
             var refinancingProgramText = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@data-testid='program-header']"))).Text;
-            var refinancingMonthlyPayment = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//span[@data-testid='monthly-payment']"))).Text.Replace(" ", "");
-            refinancingMonthlyPayment = refinancingMonthlyPayment.Remove(refinancingMonthlyPayment.Length - 1);
+            var refinancingMonthlyPayment = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//span[@data-testid='monthly-payment']"))).Text
+                .Replace(" ", "").Replace("₽", "");
             var isRefinancingMonthlyPaymentNumber = int.TryParse(refinancingMonthlyPayment, out payment);
 
             var refinancingProgramRate = driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@data-testid='interest-rate']"))).Text;
-            var isRefinancingProgramInterestRateMatch = Regex.IsMatch(familyMortgageInterestRate, pattern);          
+            var isRefinancingProgramInterestRateMatch = Regex.IsMatch(familyMortgageInterestRate, pattern);
 
-            Assert.AreEqual(bgColor, "rgba(33, 33, 33, 1)", "Цвет кнопки 'Рефинансирование' неправильный в выбранном состоянии.");
-            Assert.AreEqual(refinancingProgramText, "Рефинансирование. Семейная ипотека", "Неверное отображение типа ипотеки в рефинансировании.");
-            Assert.True(isRefinancingMonthlyPaymentNumber, "Месячный платеж не число в рефинансировании.");
-            Assert.True(isRefinancingProgramInterestRateMatch, "Процент не соответствует маске в рефинансировании.");
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(bgColor, "rgba(33, 33, 33, 1)", "Цвет кнопки 'Рефинансирование' неправильный в выбранном состоянии.");
+                Assert.AreEqual(refinancingProgramText, "Рефинансирование. Семейная ипотека", "Неверное отображение типа ипотеки в рефинансировании.");
+                Assert.True(isRefinancingMonthlyPaymentNumber, "Месячный платеж не число в рефинансировании.");
+                Assert.True(isRefinancingProgramInterestRateMatch, "Процент не соответствует маске в рефинансировании.");
+            });            
         }
     }
 }

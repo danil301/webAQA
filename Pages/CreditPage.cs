@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Pages.Data;
 using Pages.Helpers;
 using SeleniumExtras.WaitHelpers;
 
@@ -11,18 +10,18 @@ namespace Pages
         public CustomWebElement _oficcialEmploymentInput;
         public CustomWebElement _creditStoryCheckBox;
 
-        public CreditPage(IWebDriver driver, WebDriverWait webDriverWait, DebitXPaths paths) : base(driver, webDriverWait, paths)
+        public CreditPage(IWebDriver driver, WebDriverWait webDriverWait) : base(driver, webDriverWait)
         {
-            FindScecialFields((CreditXPaths)paths);
+            FindScecialElements();
         }
 
         /// <summary>
         /// Находит поля, которые не инициализировала базовая страница.
         /// </summary>
-        private void FindScecialFields(CreditXPaths paths)
+        protected override void FindScecialElements()
         {
-            _oficcialEmploymentInput = new CustomWebElement(paths.OfficialEmploymnet, _driverWait);
-            _creditStoryCheckBox = new CustomWebElement(paths.CreditStory, _driverWait);
+            _oficcialEmploymentInput = new CustomWebElement("//mat-select[@name='RussianEmployment']", _driverWait);
+            _creditStoryCheckBox = new CustomWebElement("//a[@href='/res/i/td/ConsentBKI.pdf']/../../../span[@class='rui-checkbox__frame']", _driverWait);
         }
 
         
